@@ -1,0 +1,6 @@
+# Ignore artifacts of gcc compilation in every subdirectory
+**/*.o
+**/*.out
+**/*.swp
+**/example-influx-c
+with-cmake/build
