@@ -16,9 +16,15 @@ MHandler_t *create_influxdb(const char *uri)
 	if (!h)
 		return NULL;
 
-	obj = new InfluxDBWrapper(uri);
-	h->obj = obj;
+	try {
+		obj = new InfluxDBWrapper(uri);
+	} catch(...) {
+		/* an exception occurred during wrapper creation */
+		free(h);
+		return NULL;
+	}
 
+	h->obj = obj;
 	return h;
 }
 

@@ -9,12 +9,13 @@ int main()
 	MHandler_t *h = create_influxdb("http://localhost:8086?db=temperature_db");
 	if (!h) {
 		printf("Cannot create MHandler\n");
-		return -ENOMEM;
+		return -EINVAL;
 	}
 
 	show_databases_influxdb(h);
 
 	destroy_influxdb(h);
+	h = NULL;
 
 	printf(" *** Done ***\n");
 
