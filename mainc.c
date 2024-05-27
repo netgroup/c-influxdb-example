@@ -13,6 +13,7 @@ int main()
 	}
 
 	show_databases_influxdb(h);
+	write_temp_influxdb(h, "Rome", 14.1);
 
 	destroy_influxdb(h);
 	h = NULL;

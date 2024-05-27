@@ -20,6 +20,7 @@ extern "C" {
 
 	MHandler_t *create_influxdb(const char *);
 	void show_databases_influxdb(MHandler_t *);
+	int write_temp_influxdb(MHandler_t *, const char *, double);
 	void destroy_influxdb(MHandler_t *);
 #ifdef __cplusplus
 }

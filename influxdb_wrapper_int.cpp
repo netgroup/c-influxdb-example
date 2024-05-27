@@ -47,3 +47,11 @@ void destroy_influxdb(MHandler_t *h)
 	/* destroy the opaque handler */
 	free(h);
 }
+
+int write_temp_influxdb(MHandler_t *h, const char *city, double temp)
+{
+	InfluxDBWrapper *obj;
+
+	obj = static_cast<InfluxDBWrapper *>(h->obj);
+	return obj->writeTemperature(city, temp);
+}

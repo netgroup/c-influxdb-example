@@ -10,6 +10,7 @@ public:
 	InfluxDBWrapper(const char *uri);
 	~InfluxDBWrapper();
 	void showDatabases();
+	int writeTemperature(const char *city, double temp);
 private:
 	std::unique_ptr<influxdb::InfluxDB> db;
 };

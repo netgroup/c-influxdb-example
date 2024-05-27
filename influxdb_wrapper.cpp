@@ -21,3 +21,20 @@ void InfluxDBWrapper::showDatabases() {
 			std::cout << i.getTags() <<std::endl;
 	} catch (...) { /* do nothing */ }
 }
+
+int InfluxDBWrapper::writeTemperature(const char *c, double t) {
+	double temp = static_cast<double>(t);
+	influxdb::Point point("temperature");
+	std::string city = c;
+
+	point.addTag("city", city);
+	point.addField("value", temp);
+	point.setTimestamp(std::chrono::system_clock::now());
+
+	try {
+		db->write(std::move(point));
+		return 0;
+	} catch (...) { /* do nothing */ }
+
+	return -EINVAL;
+}
