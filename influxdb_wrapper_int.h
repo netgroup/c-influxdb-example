@@ -2,6 +2,8 @@
 #ifndef INFLUXDB_WRAPPER_INT
 #define INFLUXDB_WRAPPER_INT
 
+#include "common.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -21,6 +23,7 @@ extern "C" {
 	MHandler_t *create_influxdb(const char *);
 	void show_databases_influxdb(MHandler_t *);
 	int write_temp_influxdb(MHandler_t *, const char *, double);
+	int write_temp_influxdb_struct(MHandler_t *, const struct data_point *);
 	void destroy_influxdb(MHandler_t *);
 #ifdef __cplusplus
 }

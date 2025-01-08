@@ -55,3 +55,15 @@ int write_temp_influxdb(MHandler_t *h, const char *city, double temp)
 	obj = static_cast<InfluxDBWrapper *>(h->obj);
 	return obj->writeTemperature(city, temp);
 }
+
+int write_temp_influxdb_struct(MHandler_t *h, const struct data_point *dp)
+{
+	/* we could have reused the write_temp_influxdb but we prefer to
+         * implement a new C++ function accepting the data structure
+         * @data_point.
+         */
+	InfluxDBWrapper *obj;
+
+	obj = static_cast<InfluxDBWrapper *>(h->obj);
+	return obj->writeTemperatureDataPoint(dp);
+}

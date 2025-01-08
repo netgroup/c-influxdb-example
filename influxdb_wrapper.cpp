@@ -32,9 +32,16 @@ int InfluxDBWrapper::writeTemperature(const char *c, double t) {
 	point.setTimestamp(std::chrono::system_clock::now());
 
 	try {
+		/* Using std::move ensures that the vector takes ownership of
+		 * the existing data without duplicating it.
+		 */
 		db->write(std::move(point));
 		return 0;
 	} catch (...) { /* do nothing */ }
 
 	return -EINVAL;
+}
+
+int InfluxDBWrapper::writeTemperatureDataPoint(const struct data_point *dp) {
+	return InfluxDBWrapper::writeTemperature(dp->city, dp->temperature);
 }
